@@ -1,5 +1,5 @@
 
-package lesson.two;
+package week2.questions;
 
 import edu.princeton.cs.algs4.Counter;
 import edu.princeton.cs.algs4.StdOut;
