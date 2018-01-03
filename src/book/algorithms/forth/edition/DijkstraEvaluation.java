@@ -1,11 +1,17 @@
-package week1.questions;
+package book.algorithms.forth.edition;
 
 import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
-public class Evaluate {
+public class DijkstraEvaluation {
+
+	/**
+	 * E. W. Dijkstra algorithm for Arithmetic expression evaluation.
+	 */
+	
 	public static void main(String[] args) {
+		
 		Stack<String> ops = new Stack<String>();
 		Stack<Double> vals = new Stack<Double>();
 		while (!StdIn.isEmpty()) { // Read token, push if operator.

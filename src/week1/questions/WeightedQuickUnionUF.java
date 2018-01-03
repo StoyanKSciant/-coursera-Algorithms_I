@@ -7,11 +7,14 @@ import edu.princeton.cs.algs4.StdOut;
  * the weighted algorithm makes sure that always the small tree
  * comes bellow on union operation
  */
-/************************************************
- * algorithm | initialize | union | connected |
- * ------------------------------------------------- quick-find | N | N | 1 |
- * quick-union | N | N | N | weighted QU | N | lgN | lgN |
- *************************************************/
+
+/****************************************************
+ * algorithm 	| initialize 	| union | connected |
+ * ------------------------------------------------- 
+ * quick-find 	| N 			| N 	| 1 		|
+ * quick-union 	| N 			| N 	| N 		| 
+ * weighted QU 	| N 			| lgN 	| lgN 		|
+ ****************************************************/
 
 public class WeightedQuickUnionUF {
 	private int[] parent; // parent[i] = parent of i
