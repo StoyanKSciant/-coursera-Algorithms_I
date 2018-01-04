@@ -1,0 +1,11 @@
+Fundamental data structures:
+
+data structure	|	advantage	 |	disadvantage	|
+-----------------------------------------------------
+				| index provide  |	need to know 	|
+	 array		|immediate access|	size on			|
+				| to any item	 |	initialization	|
+-----------------------------------------------------			
+				|	uses space	 |	need reference	|
+  linked list	|	proportional |	to access an	|
+				|	to size		 |		item		|

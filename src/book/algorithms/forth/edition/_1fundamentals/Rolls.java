@@ -1,5 +1,5 @@
 
-package week2.questions;
+package book.algorithms.forth.edition._1fundamentals;
 
 import edu.princeton.cs.algs4.Counter;
 import edu.princeton.cs.algs4.StdOut;

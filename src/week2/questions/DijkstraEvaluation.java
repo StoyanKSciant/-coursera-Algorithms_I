@@ -1,4 +1,4 @@
-package book.algorithms.forth.edition;
+package week2.questions;
 
 import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdIn;
@@ -9,15 +9,15 @@ public class DijkstraEvaluation {
 	/**
 	 * E. W. Dijkstra algorithm for Arithmetic expression evaluation.
 	 */
-	
+
 	public static void main(String[] args) {
-		
+
 		Stack<String> ops = new Stack<String>();
 		Stack<Double> vals = new Stack<Double>();
 		while (!StdIn.isEmpty()) { // Read token, push if operator.
 			String s = StdIn.readString();
 			if (s.equals("("))
-				;
+			/* do nothing*/	;
 			else if (s.equals("+"))
 				ops.push(s);
 			else if (s.equals("-"))
