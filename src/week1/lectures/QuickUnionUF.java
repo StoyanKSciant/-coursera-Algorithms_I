@@ -1,4 +1,4 @@
-package week1.questions;
+package week1.lectures;
 
 public class QuickUnionUF {
 	

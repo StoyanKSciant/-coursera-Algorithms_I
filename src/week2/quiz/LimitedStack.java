@@ -1,4 +1,4 @@
-package week2.questions;
+package week2.quiz;
 
 /***********************************************************************************
  * Create a data structure that efficiently supports the stack operations (push

@@ -1,4 +1,4 @@
-package week2.questions;
+package week2.lectures;
 
 public class LinkedListOfGenerics<Item> {
 

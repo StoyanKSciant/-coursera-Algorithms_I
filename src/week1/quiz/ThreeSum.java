@@ -1,4 +1,4 @@
-package week1.questions;
+package week1.quiz;
 
 import java.util.Collections;
 import java.util.ArrayList;
@@ -28,16 +28,16 @@ public class ThreeSum {
 		for (int i = 0; i < data.size() - 2; ++i) {
 			int j = i + 1;
 			int k = data.size() - 1;
-			
-			while(j < k) {
+
+			while (j < k) {
 				int sum = data.get(i) + data.get(j) + data.get(k);
-				
-				if(sum == 0) {
-					String result = "array[" +i+"]:" +data.get(i)+ " + array[" +j+ 
-							"]:" +data.get(j)+ " + array[" +k+ "]:" +data.get(k) + " = 0";
+
+				if (sum == 0) {
+					String result = "array[" + i + "]:" + data.get(i) + " + array[" + j + "]:" + data.get(j)
+							+ " + array[" + k + "]:" + data.get(k) + " = 0";
 					System.out.println(result);
 				}
-				if(sum >= 0) {
+				if (sum >= 0) {
 					--k;
 				} else {
 					++j;

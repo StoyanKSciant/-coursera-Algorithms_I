@@ -1,0 +1,30 @@
+in int array largest [] - where largest [i] is the largest element in component contains object i - we save the largest element in the connected component . After union, we must update largest array.
+
+using QuickUnionUF from algs4.jar library we add int largest[]:
+
+private int largest[]; 	// largest[i] = largest element in component
+
+and change only union method:
+
+public void union(int p, int q) {
+	int rootp = root(p);
+	int rootq = root(q);
+	if (rootp == rootq)
+		return;
+	int largeststP = largest[rootp];
+	int largeststQ = largest[rootq];
+	if (size[rootp] < size[rootq]) {
+		parent[rootp] = rootq;
+		size[rootq] += size[rootp];
+
+		if (largeststP > largeststQ)
+			largest[rootq] = largeststP;
+	} else {
+		parent[rootq] = rootp;
+		size[rootp] += size[rootq];
+
+		if (largeststQ > largeststP) {
+			largest[rootp] = largeststQ;
+		}
+	}
+}

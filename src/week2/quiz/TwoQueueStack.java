@@ -1,4 +1,4 @@
-package week2.questions;
+package week2.quiz;
 
 /***********************************************************************************
  * Implement a queue with two stacks so that each queue operations takes a

@@ -1,4 +1,4 @@
-package week2.questions;
+package week2.lectures;
 
 import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdIn;
