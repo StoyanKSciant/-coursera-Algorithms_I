@@ -2,6 +2,9 @@ package book.algorithms.forth.edition._1fundamentals;
 
 import java.util.Iterator;
 
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
+
 //  Stack implementation is based on a linked-list data structure.
 
 public class Stack<Item> implements Iterable<Item> {
@@ -35,12 +38,39 @@ public class Stack<Item> implements Iterable<Item> {
 		N--;
 		return item;
 	}
-	// See page 155 for iterator() implementation.
-	// See page 147 for test client main().
 
-	@Override
 	public Iterator<Item> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ListIterator();
+	}
+
+	private class ListIterator implements Iterator<Item> {
+		private Node current = first;
+
+		public boolean hasNext() {
+			return current != null;
+		}
+
+		public void remove() {
+			// doesn't support remove
+		}
+
+		public Item next() {
+			Item item = current.item;
+			current = current.next;
+			return item;
+		}
+	}
+
+	public static void main(String[] args) {
+		// Create a stack and push/pop strings as directed on StdIn.
+		Stack<String> s = new Stack<String>();
+		while (!StdIn.isEmpty()) {
+			String item = StdIn.readString();
+			if (!item.equals("-"))
+				s.push(item);
+			else if (!s.isEmpty())
+				StdOut.print(s.pop() + " ");
+		}
+		StdOut.println("(" + s.size() + " left on stack)");
 	}
 }

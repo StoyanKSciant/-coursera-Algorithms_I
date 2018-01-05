@@ -1,3 +1,4 @@
+
 To implement Generics, the Java compiler applies type erasure to replace all type 
 parameters in generic types with their bounds or "Object" if the type parameters 
 are unbounded. The produced bytecode, therefore, contains only ordinary classes, 
@@ -17,3 +18,7 @@ component type of the array.
 
 At runtime, the compiled class needs to handle all of its uses with the same 
 bytecode. So, new T[size] won't know what type needs to be instantiated.
+
+Hint: to start, you need to understand that Java arrays are covariant but Java 
+generics are not: that is, String[] is a subtype of Object[], but Stack<String>
+is not a subtype of Stack<Object>.
