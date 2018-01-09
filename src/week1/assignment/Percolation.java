@@ -13,123 +13,93 @@ package week1.assignment;
  * to write a computer program to estimate p*.
  *******************************************************************************************************/
 
-import edu.princeton.cs.algs4.StdRandom;
-import edu.princeton.cs.algs4.StdStats;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
-
-	private int N;
-	private boolean[][] grid;
-	private WeightedQuickUnionUF first;
-	private WeightedQuickUnionUF second;
-	private int virtualTopKey;
-	private int virtualBottomKey;
-
-	public Percolation(int N) { // create n-by-n grid, with all sites blocked
-		if (N <= 0) {
-			throw new IllegalArgumentException("Initialize the grid only with positive integers.");
-		}
-		this.N = N;
-		this.grid = new boolean[N][N];
-		int maxIndex = N * N - 1;
-
-		virtualTopKey = maxIndex + 1;
-		virtualBottomKey = maxIndex + 2;
-		first = new WeightedQuickUnionUF(virtualTopKey + 1);
-		second = new WeightedQuickUnionUF(virtualBottomKey + 1);
+	private int n;
+	private int numberOfOpenSites;
+	private boolean[][] openState;
+	private WeightedQuickUnionUF firstUF;
+	private WeightedQuickUnionUF secondUF; // avoid backwash with second WeightedQuickUnionUF
+	
+	
+	public Percolation(int N) {				// Create NxN grid, with all sites blocked
+		n = N;
+		numberOfOpenSites = 0;
+		openState = new boolean[N][N];
+		firstUF = new WeightedQuickUnionUF(N * N + 2);
+		secondUF = new WeightedQuickUnionUF(N * N + 2);
 	}
 
-	private boolean isInBounds(int row, int col) {
-		// check if argument is outside its prescribed range.
-		if (row <= 0 || row >= N || col <= 0 || col >= N) {
-			throw new IndexOutOfBoundsException("Outside bounds of matrix.");
-		}
-		return true;
-	}
-
-	public boolean isOpen(int row, int col) { // is site (row, col) open?
-		isInBounds(row, col);
-		return grid[row - 1][col - 1];
-	}
-
-	private int getCoordinatesPosition(int row, int col) {
-		int pos = row + (col * N);
-		return pos;
-	}
-	public boolean isFull(int row, int col) { // is site (row, col) full?
-		isInBounds(row, col);
-		return second.connected(virtualTopKey, getCoordinatesPosition(row, col));
-	}
-
-	private void union(int row, int col, int rowOffset, int columnOffset) {
-		final int currentKey = getCoordinatesPosition(row, col);
-		final int column2 = col + columnOffset;
-		final int row2 = row + rowOffset;
-		if (isOpen(row2, column2)) {
-			first.union(currentKey, getCoordinatesPosition(row2, column2));
-			second.union(currentKey, getCoordinatesPosition(row2, column2));
-		}
-	}
-
-	// Connect to virtual top and bottom in 
-	private void unionVirtual(int row, int col, int virtualKey, boolean allowBottomUnion) {
-		final int currentKey = getCoordinatesPosition(row, col);
-		first.union(currentKey, virtualKey);
-		if (!allowBottomUnion) {
-			second.union(currentKey, virtualKey);
-		}
-	}
-
+	// open site (row i, column j) if it is not already open and check for merging
 	public void open(int row, int col) {
+		if (isOpen(row, col)) {
+			return;
+		}
+		openState[row - 1][col - 1] = true;	// change open record to true
+		numberOfOpenSites++;
 		
-		// matrix keys[1, N][1, N], while array keys [0... N-1]
+		// unite with open neighbors
+		int currentSiteIndex = xyTo1D(row, col);
+		checkAndOpen(row - 1, col, currentSiteIndex);
+		checkAndOpen(row + 1, col, currentSiteIndex);
+		checkAndOpen(row, col - 1, currentSiteIndex);
+		checkAndOpen(row, col + 1, currentSiteIndex);
 		
-		grid[row - 1][col - 1] = true;
-		
-        if (!isLeftEdge(row)) {
-        	// Connect to left
-            union(row, col, 0, -1); 		
-        }
-       
-        if (!isRightEdge(col)) {
-        	// Connect to right
-            union(row, col, 0, +1); 		
-        }
-        
-        if (!isTopEdge(row)) {
-        	// connect to top
-            union(row, col, -1, 0); 		
-        } else {
-        	// Connect to top virtual
-            unionVirtual(row, col, virtualTopKey, false); 
-        }
-        if (!isBottomEdge(row)) {
-        	// connect to bottom
-            union(row, col, 1, 0); 			
-        } else {
-            // Connect to bottom virtual
-            unionVirtual(row, col, virtualBottomKey, true);
-        }
+		if (row == 1) {					// if is on top, connect to virtual top
+			checkAndOpen(1, col, 0);
+		}
+		if (row == n) {					// if is on bottom, connect virtual bottom
+			firstUF.union(n * n + 1, xyTo1D(row, col));
+		}
 	}
 
-	public boolean percolates() { // does the system percolate?
-		return first.connected(virtualBottomKey, virtualTopKey);
+	private void checkAndOpen(int r, int c, int root) {
+		try {
+			// try to unite with either first or second UF
+			if (isOpen(r, c)) {
+				secondUF.union(root, xyTo1D(r, c));
+				firstUF.union(root, xyTo1D(r, c));
+			}
+		} catch (IndexOutOfBoundsException e) {
+			return;
+		}
 	}
 
-	private boolean isBottomEdge(int row) {
-		return row == N;	// bottom [N][]
+	// Is site (row, column) open?
+	public boolean isOpen(int row, int col) {
+		checkBoundaries(row - 1, col - 1);	// check arguments
+		return openState[row - 1][col - 1];	// return record
 	}
 
-	private boolean isTopEdge(int row) {
-		return row == 1;	// top [1][]
+	// convert grid coordinates to array index
+	private int xyTo1D(int row, int col) {
+		return n * (row - 1) + col;
 	}
 
-	private boolean isRightEdge(int col) {
-		return col == N;	// right [][N]
+	/* A full site is an open site that is connected to an open site on the top
+	 * row via a chain of neighboring (left, right, up, down) open sites. */
+	public boolean isFull(int row, int col) {
+		checkBoundaries(row - 1, col - 1);
+		return secondUF.connected(0, xyTo1D(row, col));
 	}
 
-	private boolean isLeftEdge(int col) {
-		return col == 1;	// left [1][]
+	public int numberOfOpenSites() {      // number of open sites
+		return numberOfOpenSites;
+	}
+	
+	// To percolate the two UFs must connect
+	public boolean percolates() {
+		if (n == 1) {
+			return true;
+		}
+		return firstUF.connected(0, n * n + 1);
+	}
+
+	private void checkBoundaries(int row, int col) {
+		if (row >= n || col >= n || row < 0 || col < 0) {
+			throw new java.lang.IndexOutOfBoundsException("Outside bounds of matrix." + "\n" + 
+				String.format("N:%d N>=row:%d N>=col:%d", n, row, col));
+		}
 	}
 }

@@ -2,78 +2,72 @@ package week1.assignment;
 
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
+import edu.princeton.cs.algs4.Stopwatch;
 
 public class PercolationStats {
 
-	private double[] opened;
-	private int T; // trials > 0.
-	private int N; // number of matrix side
+	private double[] openedRatio;
 
-	public PercolationStats(int n, int trials) {
-		if (N <= 0 || T <= 0) {
-			throw new IllegalArgumentException();
+	// private StringBuilder out;
+	public PercolationStats(int matrixSize, int trials) {
+		if (matrixSize < 1) {
+			throw new IllegalArgumentException("N should be bigger than 0.");
 		}
-		this.T = trials;
-		this.N = n;
-
-		opened = new double[T];
-		for (int i = 0; i < T; i++) {
-			test(i);
+		if (trials < 1) {
+			throw new IllegalArgumentException("T should be bigger than 0.");
+		}
+		openedRatio = new double[trials];
+		Percolation perc;
+		for (int x = 0; x < trials; x++) {
+			perc = new Percolation(matrixSize);	// new percolation for each trial
+			int count = 0;
+			
+			do {			// Randomly open sites while percolation doesn't exists
+				int i = StdRandom.uniform(1, matrixSize + 1);
+				int j = StdRandom.uniform(1, matrixSize + 1);
+				if (!perc.isOpen(i, j)) {
+					perc.open(i, j);
+					count++;
+				}
+				
+			} while (!perc.percolates());
+			// save trial result
+			openedRatio[x] = (double) count / (double) (matrixSize * matrixSize);
 		}
 	}
 
-	private void test(int indexTest) {
-		final Percolation calcPerc = new Percolation(N);
-		double count = 0.0;
-
-		// while instance hasn't perculated, run test
-		while (!calcPerc.percolates()) {
-			// Use StdRandom to generate random numbers;
-			int randomRow = StdRandom.uniform(1, N + 1);
-			int randomColumn = StdRandom.uniform(1, N + 1);
-			// open at that random
-			if (!calcPerc.isOpen(randomRow, randomColumn)) {
-				calcPerc.open(randomRow, randomColumn);
-				count++;
-			}
-		}
-		double maxSize = N * N;
-		opened[indexTest] = count / maxSize;
-	}
-
+	// Sample mean of percolation threshold.
+	// (Returns the average value in the specified array)
 	public double mean() {
-		// sample mean of percolation threshold
-		return StdStats.mean(opened);
+		return StdStats.mean(openedRatio);
 	}
 
+	// Sample standard deviation of percolation threshold.
+	// (Returns the sample standard deviation in the specified array)
 	public double stddev() {
-		// sample standard deviation of percolation threshold
-		return StdStats.stddev(opened);
+		return StdStats.stddev(openedRatio);
 	}
 
+	// Returns lower bound of the 95% confidence interval.
 	public double confidenceLo() {
-		// low endpoint of 95% confidence interval
-		return mean() - ((1.96 * Math.sqrt(stddev())) / Math.sqrt(T));
+		return mean() - (1.96 * stddev() / Math.sqrt(openedRatio.length));
 	}
 
+	// Returns upper bound of the 95% confidence interval.
 	public double confidenceHi() {
-		// high endpoint of 95% confidence interval
-		return mean() + ((1.96 * Math.sqrt(stddev())) / Math.sqrt(T));
+		return mean() + (1.96 * stddev() / Math.sqrt(openedRatio.length));
 	}
 
-	public static void main(String[] args) { // test client
+	public static void main(String[] args) {
+		int N = Integer.parseInt(args[0]);
+		int T = Integer.parseInt(args[1]);
 
-		if (args.length != 2) {
-			System.out.println("Usage: PercolationStats N T");
-			return;
-		}
-
-		final int N = Integer.valueOf(args[0]);
-		final int T = Integer.valueOf(args[1]);
-		final PercolationStats ps = new PercolationStats(N, T);
-		System.out.printf("mean                      = %f\n", ps.mean());
-		System.out.printf("stddev                    = %f\n", ps.stddev());
-		System.out.printf("95%% confidence interval  = %f, %f\n", ps.confidenceHi(), ps.confidenceLo());
-
+		Stopwatch sw = new Stopwatch();
+		PercolationStats perStat = new PercolationStats(N, T);
+		System.out.printf("mean                    = %f\n", perStat.mean());
+		System.out.printf("stddev                  = %f\n", perStat.stddev());
+		System.out.printf("95%% confidence interval = %f, %f\n", perStat.confidenceLo(), perStat.confidenceHi());
+		System.out.println();
+		System.out.printf("Elapsed calculation time: %f secs. (for N=%d, T=%d)", sw.elapsedTime(), N, T);
 	}
 }
