@@ -1,6 +1,6 @@
 package week1.assignment;
 
-/*******************************************************************************************************
+/********************************************************************************************************
  * Given a composite systems comprised of randomly distributed insulating and metallic materials: what 
  * fraction of the materials need to be metallic so that the composite system is an electrical conductor?
  * Given a porous landscape with water on the surface (or oil below), under what conditions will the 
@@ -11,7 +11,19 @@ package week1.assignment;
  * almost never percolates, and when p > p*, a random n-by-n grid almost always percolates. No 
  * mathematical solution for determining the percolation threshold p* has yet been derived. Your task is
  * to write a computer program to estimate p*.
- *******************************************************************************************************/
+ * 
+ * Corner cases:
+ * By convention, the row and column indices are integers between 1 and n, where (1, 1) is the upper-left
+ * site: 
+ * Throw a java.lang.IllegalArgumentException if any argument to open(), isOpen(), or isFull() is 
+ * outside its prescribed range. 
+ * The constructor should throw a java.lang.IllegalArgumentException if n ≤ 0.
+
+ * Performance requirements: 
+ * The constructor should take time proportional to n^2; 
+ * All methods should take constant time plus a constant number of calls to the union–find methods
+ * union(), find(), connected(), and count().
+ ********************************************************************************************************/
 
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
@@ -24,6 +36,9 @@ public class Percolation {
 	
 	
 	public Percolation(int N) {				// Create NxN grid, with all sites blocked
+		if(N <= 0) {
+			throw new IllegalArgumentException("Matrix size must be a positive number.");
+		}
 		n = N;
 		numberOfOpenSites = 0;
 		openState = new boolean[N][N];
@@ -91,7 +106,7 @@ public class Percolation {
 	// To percolate the two UFs must connect
 	public boolean percolates() {
 		if (n == 1) {
-			return true;
+			return openState[0][0];
 		}
 		return firstUF.connected(0, n * n + 1);
 	}
