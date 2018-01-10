@@ -26,7 +26,8 @@ where:
             uf.union(x, x+1);       
     }
     
-2. Then the largest successor is equal to the largest number in that component plus 1.
+2. Then the largest successor is equal to the largest number in that component
+ plus 1.
     public int successor(int x) {
         if (data[x]) {
             return x;

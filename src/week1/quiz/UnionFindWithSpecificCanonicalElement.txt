@@ -1,4 +1,6 @@
-in int array largest [] - where largest [i] is the largest element in component contains object i - we save the largest element in the connected component . After union, we must update largest array.
+in int array largest [] - where largest [i] is the largest element in component
+ contains object i - we save the largest element in the connected component .
+ After union, we must update largest array.
 
 using QuickUnionUF from algs4.jar library we add int largest[]:
 

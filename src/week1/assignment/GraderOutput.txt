@@ -1,3 +1,4 @@
+
 See the Assessment Guide for information on how to interpret this report.
 
 ASSESSMENT SUMMARY
@@ -9,19 +10,19 @@ Findbugs:     PASSED
 PMD:          PASSED
 Checkstyle:   FAILED (0 errors, 7 warnings)
 
-Correctness:  28/30 tests passed
+Correctness:  29/30 tests passed
 Memory:       8/8 tests passed
-Timing:       18/20 tests passed
+Timing:       19/20 tests passed
 
-Aggregate score: 94.00%
+Aggregate score: 97.00%
 [Compilation: 5%, API: 5%, Findbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
 
 ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
-4.5K Jan  9 15:47 Percolation.java
-2.2K Jan  9 15:47 PercolationStats.java
+4.5K Jan  9 16:02 Percolation.java
+2.2K Jan  9 16:02 PercolationStats.java
 
 
 ********************************************************************************
@@ -131,18 +132,10 @@ Test 2: open random sites until just before system percolates
 
 Test 3: open predetermined sites for n = 1 and n = 2 (corner case test)
   * filename = input1.txt
-    - percolates() returns wrong value after 0 sites opened
-    - student   percolates() = true
-    - reference percolates() = false
-
   * filename = input1-no.txt
-    - percolates() returns wrong value after 0 sites opened
-    - student   percolates() = true
-    - reference percolates() = false
-
   * filename = input2.txt
   * filename = input2-no.txt
-==> FAILED
+==> passed
 
 Test 4: check predetermined sites with long percolating path
   * filename = snake13.txt
@@ -339,7 +332,7 @@ Test 15: call all methods in random order until all sites are open,
 ==> passed
 
 
-Total: 13/15 tests passed!
+Total: 14/15 tests passed!
 
 
 ================================================================
@@ -562,18 +555,15 @@ Test 4: Call PercolationStats methods with trials = 3 and values of n that go up
 
          n  seconds log ratio
      ------------------------
-       512     0.15       2.5
-       724     0.39       2.7
-      1024     0.95       2.5
-      1448     2.24       2.5
-      2048     5.02       2.3
-      2896    11.78       2.5
-     [ exceeded the time limit of 10.0 seconds ]
-
-==> FAILED
+       724     0.23       2.4
+      1024     0.51       2.3
+      1448     1.50       3.1
+      2048     3.58       2.5
+      2896     9.17       2.7
+==> passed
 
 
-Total: 2/4 tests passed!
+Total: 3/4 tests passed!
 
 
 ================================================================
@@ -628,13 +618,13 @@ Test 1a-1e: Creates an n-by-n percolation system; open sites at random until
                                        2 * connected()
                  n       union()              + find()        constructor
 -----------------------------------------------------------------------------------
-=> passed       16          358                   304                   2         
-=> passed       32         1404                  1184                   2         
-=> passed       64         5693                  4844                   2         
-=> passed      128        24351                 19912                   2         
-=> passed      256        95359                 78962                   2         
-=> passed      512       378072                315012                   2         
-=> passed     1024      1443355               1230530                   2         
+=> passed       16          361                   304                   2         
+=> passed       32         1677                  1306                   2         
+=> passed       64         5537                  4750                   2         
+=> passed      128        22565                 19272                   2         
+=> passed      256        91168                 77210                   2         
+=> passed      512       373705                312842                   2         
+=> passed     1024      1489041               1249666                   2         
 ==> 7/7 tests passed
 
 
@@ -675,11 +665,11 @@ Test 3: Create an n-by-n percolation system; interleave calls to percolates()
                         log   union-find     log
          n  seconds   ratio   operations   ratio
      -------------------------------------------
-      1024     0.18     2.5      4188330     2.0
-      1448     0.51     3.0      8373540     2.0
-      2048     1.28     2.7     16536374     2.0
-      2896     3.21     2.7     33418528     2.0
-      4096     7.49     2.4     66974662     2.0
+      1024     0.21     2.7      4184456     1.9
+      1448     0.56     2.9      8400190     2.0
+      2048     1.52     2.9     16777952     2.0
+      2896     3.96     2.8     33602064     2.0
+      4096     7.91     2.0     66833486     2.0
 ==> passed
 
 
@@ -692,11 +682,12 @@ Test 4: Create an n-by-n percolation system; interleave calls to open(),
                         log   union-find     log
          n  seconds   ratio   operations   ratio
      -------------------------------------------
-      1024     0.21     2.6      5367604     2.0
-      1448     0.55     2.8     11009096     2.1
-      2048     1.47     2.8     21810972     2.0
-      2896     4.01     2.9     43511814     2.0
-      4096     8.92     2.3     86866716     2.0
+       724     0.12     2.9      2758108     2.0
+      1024     0.22     1.7      5436042     2.0
+      1448     0.69     3.3     10897262     2.0
+      2048     1.56     2.3     21762674     2.0
+      2896     4.12     2.8     43460294     2.0
+      4096     8.34     2.0     87260228     2.0
 ==> passed
 
 

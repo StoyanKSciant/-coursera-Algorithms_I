@@ -1,4 +1,5 @@
-“the earliest time at which all members are connected” is the time when the number of connected component is 1.
+“the earliest time at which all members are connected” is the time when the 
+number of connected component is 1.
 
 using WeightedQuickUnionUF from algs4.jar library
 

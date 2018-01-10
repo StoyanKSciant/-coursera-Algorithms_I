@@ -2,12 +2,16 @@ package book.algorithms.forth.edition._1fundamentals;
 
 import java.util.Iterator;
 
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
+
 // generic Queue implementation is based on a linked-list data structure
 
 public class Queue<Item> implements Iterable<Item> {
+	
 	private Node first; // link to least recently added node
-	private Node last; // link to most recently added node
-	private int N; // number of items on the queue
+	private Node last; 	// link to most recently added node
+	private int N; 		// number of items on the queue
 
 	private class Node { // nested class to define nodes
 		Item item;
@@ -42,12 +46,38 @@ public class Queue<Item> implements Iterable<Item> {
 		N--;
 		return item;
 	}
-	// See page 155 for iterator() implementation.
-	// See page 150 for test client main().
 
-	@Override
 	public Iterator<Item> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ListIterator();
+	}
+
+	private class ListIterator implements Iterator<Item> {
+		private Node current = first;
+
+		public boolean hasNext() {
+			return current != null;
+		}
+
+		public void remove() {
+		}
+
+		public Item next() {
+			Item item = current.item;
+			current = current.next;
+			return item;
+		}
+	}
+
+	public static void main(String[] args) { // Create a queue and enqueue/dequeue strings.
+		Queue<String> q = new Queue<String>();
+		while (!StdIn.isEmpty()) {
+			String item = StdIn.readString();
+			if (!item.equals("-")) {
+				q.enqueue(item);
+			} else if (!q.isEmpty()) {
+				StdOut.print(q.dequeue() + " ");
+			}
+		}
+		StdOut.println("(" + q.size() + " left on queue)");
 	}
 }

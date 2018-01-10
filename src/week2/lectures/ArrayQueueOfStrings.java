@@ -143,7 +143,8 @@ public class ArrayQueueOfStrings {
 		stringQueue.enqueue("ghost");
 		stringQueue.enqueue("peer");
 		stringQueue.enqueue("bike");
-		System.out.println("add find, hide, side, glass, rim, flor, ball, pen, soul, ghost, peer, bike :" + '\n' + Arrays.toString(stringQueue.queue));
+		System.out.println("add find, hide, side, glass, rim, flor, ball, pen, soul, ghost, peer, bike :"
+				+ '\n' + Arrays.toString(stringQueue.queue));
 		System.out.println("queue size is " + Integer.toString(stringQueue.size()));
 		
 		for(int i = 0; i < 12; i++) {
