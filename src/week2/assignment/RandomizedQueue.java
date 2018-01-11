@@ -61,7 +61,47 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		last = 0;						// used as dummy node
 		size = 0;
 	}
+	
 
+	private class RandomizedQueueIterator implements Iterator<Item> {
+		private int current;
+		private int initialSize;
+	    private int[] order;
+	    
+	    public RandomizedQueueIterator() {
+            initialSize = size;
+            current = 0;
+            order = new int[size];
+            for (int i = 0; i < size; i++) {
+                order[i] = i;
+            }
+            StdRandom.shuffle(order);	// order keys at random
+        }
+	    
+		@Override
+		public boolean hasNext() {
+			return current < size || size == 0;
+		}
+
+		@Override
+		public void remove() { 			// doesn't support remove()
+			throw new UnsupportedOperationException("remove() method is not supported");
+		}
+
+		@Override
+		public Item next() {
+            if (!hasNext()) {
+                throw new java.util.NoSuchElementException();
+            }
+            Item item = queue[order[current]];
+            if (size() != initialSize) {
+                throw new java.util.ConcurrentModificationException();
+            }
+            current++;
+            return item;
+		}
+	}
+	
 	public boolean isEmpty() { 			// is the randomized queue empty?
 		return size == 0;
 	}
@@ -70,8 +110,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		return size;
 	}
 
-	// resize the underlying array
-	private void resize(int capacity) {
+	private void resizeQueue(int capacity) { // resize the underlying array
 		if (capacity >= size) {
 			Item[] temp = (Item[]) new Object[capacity];
 			for (int i = 0; i < size; i++) {
@@ -87,36 +126,32 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		if (item == null) {
 			throw new IllegalArgumentException("can't enqueue unexisting item");
 		}
-		if (size == queue.length)
-			resize(2 * queue.length);	// double size of array if necessary
-		queue[last++] = item; 
-		if (last == queue.length)
+		if (size == queue.length) {		// double size of array if necessary
+			resizeQueue(2 * queue.length);	
+		}
+		queue[last++] = item; 			// add item
+		if (last == queue.length) {
 			last = 0; 				  	// wrap-around
-		size++;
+		}
+		size++;							// increase size
 	}
 
 	public Item dequeue() { 			// remove and return a random item
-		if (size == 0) {
+		if (isEmpty()) {
 			throw new NoSuchElementException("queue is empty - nothing to dequeue");
 		}
-		// dequeue operation must be at random choosing
-		int randomIndex = StdRandom.uniform(size);
+		
+		int randomIndex = StdRandom.uniform(size); //dequeue operation must be at random choosing
 		Item item = queue[randomIndex];
-
-		if (randomIndex == size - 1) {
-			queue[randomIndex] = null; // to avoid loitering
-		} else {
-			queue[randomIndex] = queue[size - 1];
-			queue[randomIndex] = null;
-		}
-		queue[first] = null; 			// to avoid loitering
+		queue[randomIndex] = queue[first]; // to avoid loitering
+		queue[first] = null;
 		size--;
 		first++;
-		if (first == queue.length)
-			first = 0; 					// wrap-around
-		// shrink size of array if necessary
-		if (size > 0 && size == queue.length / 4)
-			resize(queue.length / 2);
+		if (first == queue.length) {
+			first = 0;          		 // wrap-around
+		}
+		if (size > 0 && size == queue.length / 4) // shrink size of array if necessary
+			resizeQueue(queue.length / 2);
 		return item;
 	}
 
@@ -124,37 +159,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		if (size == 0) {
 			throw new NoSuchElementException("queue is empty - nothing to dequeue");
 		}
-		
-		int randomIndex = StdRandom.uniform(size);
-		return queue[randomIndex];
+		return queue[StdRandom.uniform(0, size)];
 	}
 
 	@Override
 	public Iterator<Item> iterator() { // return an independent iterator over items in random order
 		return new RandomizedQueueIterator();
-	}
-
-	private class RandomizedQueueIterator implements Iterator<Item> {
-		private int i = 0;
-
-		@Override
-		public boolean hasNext() {
-			return i < size;
-		}
-
-		@Override
-		public void remove() { // doesn't support remove()
-			throw new UnsupportedOperationException("remove() method is not supported");
-		}
-
-		@Override
-		public Item next() {
-			if (!hasNext()) {
-				throw new NoSuchElementException("There are no more items left");
-			}
-			Item item = queue[(i + first) % queue.length];
-			i++;
-			return item;
-		}
 	}
 }

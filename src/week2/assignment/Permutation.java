@@ -18,38 +18,23 @@ package week2.assignment;
  **************************************************************************************/
 
 import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
 
 public class Permutation {
-
-	private String elements[];
-	private RandomizedQueue<String> q;
-
-	private void runPerm(int k, String input) {
-
-		if (k == 0 || input == null || input.isEmpty()) {
-			throw new IllegalArgumentException("wrong input");
-		}
-
-		elements = input.split(" ");
-		q = new RandomizedQueue<String>();
-		
-		for (int i = 0; i < elements.length; i++) {
-			q.enqueue(elements[i]); // populate randomized queue
-		}
-		for (int j = 0; j < k; j++) {
-			// with dequeue we make sure that items get printed only once
-			System.out.println(q.dequeue()); // print k times random elements
-		}
-	}
 
 	public static void main(String[] args) {
 
 		// takes an integer k as a command-line argument
 		int k = Integer.parseInt(args[0]);
-		// reads in a sequence of strings from standard input
-		String input = StdIn.readString();
+		RandomizedQueue<String> rq = new RandomizedQueue<>();
 
-		Permutation perm = new Permutation();
-		perm.runPerm(k, input);
+		while (!StdIn.isEmpty()) {
+			// reads in a sequence of strings from standard input
+			rq.enqueue(StdIn.readString());
+		}
+
+		for (int i = 0; i < k; i++) {
+			StdOut.println(rq.dequeue());
+		}
 	}
 }

@@ -18,7 +18,7 @@ import edu.princeton.cs.algs4.StdOut;
 import week1.assignment.Percolation;
 
 public class InteractivePercolationVisualizer {
-
+/*
     public static void main(String[] args) {
         // n-by-n percolation system (read from command-line, default = 10)
         int n = 10;          
@@ -61,4 +61,5 @@ public class InteractivePercolationVisualizer {
             StdDraw.pause(20);
         }
     }
+    */
 }
