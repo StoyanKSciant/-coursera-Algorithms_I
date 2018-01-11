@@ -25,6 +25,6 @@ public class Point implements Comparable<Point> {
 		if (that.y < this.y) {
 			return 1;
 		}
-		return 0; 	// if equal return 0;
+		return 0; 	// if equal return 0
 	}
 }

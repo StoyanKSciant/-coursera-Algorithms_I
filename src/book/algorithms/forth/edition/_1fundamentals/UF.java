@@ -26,12 +26,12 @@ public class UF {
 	}
 
 	public int find(int p) {
-		// TODO implementation depends on the method of choosing
+		// implementation depends on the method of choosing
 		return p;	// no logic - just so we return int
 	}
 	
 	public void union(int p, int q){
-		// TODO implementation depends on the method of choosing
+		// implementation depends on the method of choosing
 	}
 	
 	public static void main(String[] args) {// Solve dynamic connectivity problem on StdIn.

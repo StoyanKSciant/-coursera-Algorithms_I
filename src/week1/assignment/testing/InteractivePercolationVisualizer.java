@@ -12,13 +12,13 @@ package week1.assignment.testing;
  *  open sites (that aren't full) in white, and blocked sites in black.
  *
  ******************************************************************************/
-
 import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdOut;
 import week1.assignment.Percolation;
 
-public class InteractivePercolationVisualizer {
 /*
+public class InteractivePercolationVisualizer {
+	
     public static void main(String[] args) {
         // n-by-n percolation system (read from command-line, default = 10)
         int n = 10;          
@@ -61,5 +61,5 @@ public class InteractivePercolationVisualizer {
             StdDraw.pause(20);
         }
     }
-    */
 }
+*/

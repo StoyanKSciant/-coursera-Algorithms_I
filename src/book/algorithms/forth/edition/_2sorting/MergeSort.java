@@ -33,10 +33,25 @@ public class MergeSort {
 		sort(a, mid + 1, hi); // Sort right half.
 		merge(a, lo, mid, hi); // Merge results (code on page 271).
 	}
-	
-	/*// Bottom-up MergeSort
+
+	// Bottom-up MergeSort
+	/*
 	private static Comparable[] aux; // auxiliary array for merges
-	// See page 271 for merge() code.
+
+	public static void merge(Comparable[] a, int lo, int mid, int hi) { // Merge a[lo..mid] with a[mid+1..hi].
+		int i = lo, j = mid + 1;
+		for (int k = lo; k <= hi; k++) // Copy a[lo..hi] to aux[lo..hi].
+			aux[k] = a[k];
+		for (int k = lo; k <= hi; k++) // Merge back to a[lo..hi].
+			if (i > mid)
+				a[k] = aux[j++];
+			else if (j > hi)
+				a[k] = aux[i++];
+			else if (less(aux[j], aux[i]))
+				a[k] = aux[j++];
+			else
+				a[k] = aux[i++];
+	}
 
 	public static void sort(Comparable[] a) { // Do lg N passes of pairwise merges.
 		int N = a.length;
@@ -46,7 +61,6 @@ public class MergeSort {
 				merge(a, lo, lo + sz - 1, Math.min(lo + sz + sz - 1, N - 1));
 	}
 	*/
-	
 	private static boolean less(Comparable v, Comparable w) {
 		return v.compareTo(w) < 0;
 	}

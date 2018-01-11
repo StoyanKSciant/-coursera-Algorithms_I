@@ -15,7 +15,7 @@ import edu.princeton.cs.algs4.Stack;
 
 public class TwoStackQueue<Item> {
 	
-	private Stack<Item> first;		// edu.princeton.cs.algs4.Stack;
+	private Stack<Item> first;		// edu.princeton.cs.algs4.Stack
 	private Stack<Item> second;
 	
 	public TwoStackQueue() {

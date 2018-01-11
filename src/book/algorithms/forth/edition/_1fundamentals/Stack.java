@@ -8,10 +8,10 @@ import edu.princeton.cs.algs4.StdOut;
 //  Stack implementation is based on a linked-list data structure.
 
 public class Stack<Item> implements Iterable<Item> {
-	private Node first; // top of stack (most recently added node)
-	private int N; // number of items
+	private Node first; 			// top of stack (most recently added node)
+	private int N; 					// number of items
 
-	private class Node { // nested class to define nodes
+	private class Node { 			// nested class to define nodes
 		Item item;
 		Node next;
 	}
@@ -24,7 +24,7 @@ public class Stack<Item> implements Iterable<Item> {
 		return N;
 	}
 
-	public void push(Item item) { // Add item to top of stack.
+	public void push(Item item) { 	// Add item to top of stack.
 		Node oldfirst = first;
 		first = new Node();
 		first.item = item;
@@ -32,7 +32,7 @@ public class Stack<Item> implements Iterable<Item> {
 		N++;
 	}
 
-	public Item pop() { // Remove item from top of stack.
+	public Item pop() { 			// Remove item from top of stack.
 		Item item = first.item;
 		first = first.next;
 		N--;

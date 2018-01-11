@@ -2,7 +2,8 @@ package book.algorithms.forth.edition._2sorting;
 
 public class QuickSort {
 
-	private static void sort(Comparable[] a, int lo, int hi) { // See page 289 for public sort() that calls this method.
+	// Quick-Sort is in-place algorithm it doesn't use extra space
+	private static void sort(Comparable[] a, int lo, int hi) { // See page 289 for public sort() that calls this method
 		if (hi <= lo)
 			return;
 		int lt = lo, i = lo + 1, gt = hi;

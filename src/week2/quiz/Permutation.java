@@ -17,7 +17,7 @@ public class Permutation {
 		}
 		
 		// if size is equal sort arrays
-		Shell.sort(a);	// edu.princeton.cs.algs4.Shell;
+		Shell.sort(a);	// edu.princeton.cs.algs4.Shell
 		Shell.sort(b);
 		
 		// iterate trough arrays, if there is difference in their sorted

@@ -1,0 +1,12 @@
+A stable sort preserves the relative order of items with equal keys
+
+Insertion sort: is stable because equal items never past each other
+	
+Selection sort: is NOT stable because Long-distance exchange might move an item
+ past some equal item.
+	
+Shell sort: is NOT stable because of Long-distance exchanges
+
+Merge sort: is stable as long as the merge operation is stable
+	
+Quick sort: is NOT stable 

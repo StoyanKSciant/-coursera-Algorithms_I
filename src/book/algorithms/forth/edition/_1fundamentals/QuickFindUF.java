@@ -20,7 +20,7 @@ public class QuickFindUF {
 	private int[] id; 					// access to component id (site indexed)
 	private int count; 					// number of components
 
-	public QuickFindUF(int N) { 					// Initialize component id array.
+	public QuickFindUF(int N) { 		// Initialize component id array.
 		count = N;
 		id = new int[N];
 		for (int i = 0; i < N; i++) {
@@ -55,16 +55,16 @@ public class QuickFindUF {
 	
 	public static void main(String[] args) { // Solve dynamic connectivity problem on StdIn.
 		
-	int N = StdIn.readInt(); 			// Read number of sites.
+	int N = StdIn.readInt(); 				// Read number of sites.
 	QuickFindUF quickFindUF = new QuickFindUF(N);				// Initialize N components.
 		while (!StdIn.isEmpty()) {
 			int p = StdIn.readInt();
-			int q = StdIn.readInt();	// Read pair to connect.
+			int q = StdIn.readInt();		// Read pair to connect.
 			if (quickFindUF.connected(p, q)) {
-				continue; 				// Ignore if connected.
+				continue; 					// Ignore if connected.
 			}
-			quickFindUF.union(p, q); 			// Combine components
-			StdOut.println(p + " " + q);// and print connection.
+			quickFindUF.union(p, q); 		// Combine components
+			StdOut.println(p + " " + q);	// and print connection.
 		}
 		StdOut.println(quickFindUF.count() + " components");
 	}
