@@ -1,8 +1,3 @@
-package book.algorithms.forth.edition._2sorting;
-
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdOut;
-
 /*******************************************************************************************
  * Insertion sort:   ~(N^2)/4 compares and (N^2)/4 exchanges to sort random array
  * 
@@ -17,6 +12,11 @@ import edu.princeton.cs.algs4.StdOut;
  * the sort, but they are not in their final position, as they may have to be moved to
  * make room for smaller items encountered later.
  *******************************************************************************************/
+
+package book.algorithms.forth.edition._2sorting;
+
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
 
 public class Insertion {
 

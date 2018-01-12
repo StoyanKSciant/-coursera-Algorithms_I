@@ -1,5 +1,3 @@
-package week2.quiz;
-
 /***********************************************************************************************
  * Given an array of n buckets, each containing a red, white, or blue pebble, sort them by the
  * Holland flag colors order: RED/WHITE/BLUE;
@@ -14,7 +12,7 @@ package week2.quiz;
 	 -Constant extra space.
  ***********************************************************************************************/
 
-
+package week2.quiz;
 
 public class SortByColor {
 	

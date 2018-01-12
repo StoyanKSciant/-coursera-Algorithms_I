@@ -1,8 +1,3 @@
-package week1.lectures;
-
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
-
 /**
  * the weighted algorithm makes sure that always the small tree
  * comes bellow on union operation
@@ -15,6 +10,11 @@ import edu.princeton.cs.algs4.StdOut;
  * quick-union 	| N 			| N 	| N 		| 
  * weighted QU 	| N 			| lgN 	| lgN 		|
  ****************************************************/
+
+package week1.lectures;
+
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
 
 public class WeightedQuickUnionUF {
 	private int[] parent; // parent[i] = parent of i

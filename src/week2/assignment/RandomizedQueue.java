@@ -1,5 +1,3 @@
-package week2.assignment;
-
 /********************************************************************************************
  * Write a generic data type for a randomized queue. The goal of this assignment is to 
  * implement elementary data structures using arrays and linked lists, and to introduce you 
@@ -43,6 +41,8 @@ package week2.assignment;
  * 
  * Unfortunately, this leads to a compiler warning.
  */
+
+package week2.assignment;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

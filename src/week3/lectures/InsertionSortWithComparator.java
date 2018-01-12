@@ -1,11 +1,11 @@
-package week3.lectures;
-
-import java.util.Comparator;
-
 /* 
  * Use Object instead of Comparable
  * pass Comparator to sort() and less() and use it in less()
  */
+
+package week3.lectures;
+
+import java.util.Comparator;
 
 public class InsertionSortWithComparator {
 

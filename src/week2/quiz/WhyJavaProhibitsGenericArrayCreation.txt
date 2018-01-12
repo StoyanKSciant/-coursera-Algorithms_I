@@ -1,4 +1,3 @@
-
 To implement Generics, the Java compiler applies type erasure to replace all 
 type parameters in generic types with their bounds or "Object" if the type 
 parameters are unbounded. The produced bytecode, therefore, contains only 

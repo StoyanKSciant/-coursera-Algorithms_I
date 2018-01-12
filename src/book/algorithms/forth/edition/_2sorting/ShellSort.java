@@ -1,9 +1,3 @@
-package book.algorithms.forth.edition._2sorting;
-
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdOut;
-
-
 /************************************************************************************************
  * ShellSort is a simple extension of insertion sort that gains speed by allowing exchanges of
  * array entries that are far apart, to produce partially sorted arrays that can be efficiently
@@ -17,6 +11,10 @@ import edu.princeton.cs.algs4.StdOut;
  *
  ************************************************************************************************/
 
+package book.algorithms.forth.edition._2sorting;
+
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
 
 public class ShellSort {
 

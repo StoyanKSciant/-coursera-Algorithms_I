@@ -1,14 +1,14 @@
-package book.algorithms.forth.edition._2sorting;
-
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdOut;
-
-
 /*******************************************************************************************
  * Selection sort:   ~(N^2)/2 compares and N exchanges 
  * For each i, this implementation puts the i-th smallest item in a[i]. The entries to the 
  * left of position i are the i smallest items in the array and are not examined again.
  *******************************************************************************************/
+
+package book.algorithms.forth.edition._2sorting;
+
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
+
 public class Selection {
 	public static void sort(Comparable[] a) { // Sort a[] into increasing order.
 		int N = a.length; // array length

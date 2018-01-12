@@ -17,7 +17,7 @@ public class DijkstraEvaluation {
 		while (!StdIn.isEmpty()) { // Read token, push if operator.
 			String s = StdIn.readString();
 			if (s.equals("("))
-			/* do nothing*/	;
+				/* do nothing */ ;
 			else if (s.equals("+"))
 				ops.push(s);
 			else if (s.equals("-"))

@@ -1,10 +1,10 @@
-package book.algorithms.forth.edition._1fundamentals;
-
 /*
  * Implementing our Bag API using a linked-list data structure is
  * simply a matter of changing the name of push() in Stack to add() 
  * and removing the implementation of pop()
  * */
+
+package book.algorithms.forth.edition._1fundamentals;
 
 import java.util.Iterator;
 

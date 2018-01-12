@@ -1,5 +1,3 @@
-package week1.assignment;
-
 /********************************************************************************************************
  * Given a composite systems comprised of randomly distributed insulating and metallic materials: what 
  * fraction of the materials need to be metallic so that the composite system is an electrical conductor?
@@ -24,6 +22,8 @@ package week1.assignment;
  * All methods should take constant time plus a constant number of calls to the union–find methods
  * union(), find(), connected(), and count().
  ********************************************************************************************************/
+
+package week1.assignment;
 
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 

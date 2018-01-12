@@ -1,4 +1,3 @@
-package week3.quiz;
 /***************************************************************************
  * Nuts and bolts: 
  * A disorganized carpenter has a mixed pile of n nuts and n bolts. The goal
@@ -7,7 +6,11 @@ package week3.quiz;
  * a bolt together, the carpenter can see which one is bigger (but the 
  * carpenter cannot compare two nuts or two bolts directly). Design an 
  * algorithm for the problem that uses nlogn compares (probabilistically).
+ * 
+ * Hint: modify the quicksort partitioning part of quicksort.
  ***************************************************************************/
+
+package week3.quiz;
 
 public class NutsAndBolts {
 

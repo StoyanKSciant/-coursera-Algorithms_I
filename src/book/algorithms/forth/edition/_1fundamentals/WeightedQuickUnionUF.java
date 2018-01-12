@@ -1,6 +1,3 @@
-package book.algorithms.forth.edition._1fundamentals;
-
-
 /*******************************************************************************************************
  * The depth of any node in a forest built by weighted quick-union for N sites is at most lg N.
  *
@@ -15,6 +12,9 @@ package book.algorithms.forth.edition._1fundamentals;
 		weighted quick-union 	 | N 		 | lg N 		| lg N
 		WQU with path compression| N 		 | very, very nearly, but not quite 1 (amortized )
  *******************************************************************************************************/
+
+package book.algorithms.forth.edition._1fundamentals;
+
 public class WeightedQuickUnionUF {
 	private int[] id; 				// parent link (site indexed)
 	private int[] sz; 				// size of component for roots (site indexed)

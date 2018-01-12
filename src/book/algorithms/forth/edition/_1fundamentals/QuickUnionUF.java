@@ -1,6 +1,3 @@
-package book.algorithms.forth.edition._1fundamentals;
-
-
 /*******************************************************************************************************
  * To speed up the union() operation we use QuickUnion method. It is based on the same data structure:
  * the site-indexed id[] array BUT WE INTERPRET THE VALUES DIFFERENTLY, to define more complicated 
@@ -14,6 +11,8 @@ package book.algorithms.forth.edition._1fundamentals;
  * We take QuickUnion as an improvement over QuickFind because it removes QuickFind’s main liability 
  * that union() always takes linear time. 
 *******************************************************************************************************/
+
+package book.algorithms.forth.edition._1fundamentals;
 
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;

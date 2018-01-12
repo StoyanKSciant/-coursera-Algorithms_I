@@ -1,8 +1,3 @@
-package book.algorithms.forth.edition._1fundamentals;
-
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
-
 /*********************************************************************************************
  * One approach is to maintain the invariant that p and q are connected  iff (if and only if)
  * id[p] is equal to id[q]. In other words, all sites in a component must have the same value 
@@ -12,6 +7,11 @@ import edu.princeton.cs.algs4.StdOut;
  * To combine the two components into one, we have to make all of the id[] entries corresponding
  * to both sets of sites the same value.
  *********************************************************************************************/
+
+package book.algorithms.forth.edition._1fundamentals;
+
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
 
 public class QuickFindUF {
 

@@ -1,5 +1,3 @@
-package week2.assignment;
-
 /*********************************************************************************************
  * Write a generic data type for a deque. The goal of this assignment is to implement 
  * elementary data structures using arrays and linked lists, and to introduce you to generics
@@ -28,7 +26,9 @@ package week2.assignment;
  * Throw a java.lang.UnsupportedOperationException if the client calls the remove() method in the iterator.
  */
 
-//This implementation of deque uses double linked list as its data structure
+// This implementation of deque uses double linked list as its data structure
+
+package week2.assignment;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

@@ -1,19 +1,18 @@
-package week1.lectures;
-
-import edu.princeton.cs.algs4.StdOut;
-
-/* Successor with delete. 
+/** Successor with delete. 
  * Given a set of N integers S={0,1,...,N?1} and a sequence of requests of the following form:
  *  - Remove x from S
  *  - Find the successor of x: the smallest y in S such that y>=x.
  * design a data type so that all operations (except construction) should take logarithmic time or better.
- */
-
-/** Using QuickUnionUFWithlargestElementInComponent implementation
+ *
+ * Using QuickUnionUFWithlargestElementInComponent implementation
  * When a number is removed, union the immediate neighbor if it is also removed.
  * Then the largest successor is equal to the largest number in that component
  * plus 1.
  */
+
+package week1.lectures;
+
+import edu.princeton.cs.algs4.StdOut;
 
 public class SuccessorWithDelete {
 	

@@ -1,5 +1,3 @@
-package week2.assignment;
-
 /**************************************************************************************
  * Write a client program Permutation.java that:
  * 1. Takes an integer k as a command-line argument;
@@ -16,6 +14,8 @@ package week2.assignment;
  * maximum size at most n. (For an extra challenge, use only one Deque or 
  * RandomizedQueue object of maximum size at most .
  **************************************************************************************/
+
+package week2.assignment;
 
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;

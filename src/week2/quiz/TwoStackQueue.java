@@ -1,10 +1,3 @@
-package week2.quiz;
-
-import java.awt.Frame;
-import java.util.NoSuchElementException;
-
-import edu.princeton.cs.algs4.Stack;
-
 /***********************************************************************************
  * Implement a queue with two stacks so that each queue operations takes a constant
  * amortized number of stack operations.
@@ -12,6 +5,13 @@ import edu.princeton.cs.algs4.Stack;
  * Hint: If you push elements onto a stack and then pop them all, they appear in 
  * reverse order. If you repeat this process, they're now back in order.
  ***********************************************************************************/
+
+package week2.quiz;
+
+import java.awt.Frame;
+import java.util.NoSuchElementException;
+
+import edu.princeton.cs.algs4.Stack;
 
 public class TwoStackQueue<Item> {
 	

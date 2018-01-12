@@ -1,14 +1,14 @@
-package week1.quiz;
-
-import java.util.Collections;
-import java.util.ArrayList;
-import java.util.Scanner;
-
 /**
  * Design an algorithm for the 3-SUM problem that takes time proportional to
  * O(n^2) in the worst case. You may assume that you can sort the N integers in
  * time proportional to n^2 or better.
  */
+
+package week1.quiz;
+
+import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ThreeSum {
 
