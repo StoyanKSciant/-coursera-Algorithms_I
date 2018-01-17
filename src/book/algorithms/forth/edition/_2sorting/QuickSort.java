@@ -1,27 +1,43 @@
 package book.algorithms.forth.edition._2sorting;
 
+import edu.princeton.cs.algs4.StdRandom;
+
 public class QuickSort {
 
 	// Quick-Sort is in-place algorithm it doesn't use extra space
-	private static void sort(Comparable[] a, int lo, int hi) { // See page 289 for public sort() that calls this method
+	/*
+	 * shuffle array
+	 * sort(array){ partition array recursively call sort([start, partition item]) & sort([partition item, end])}
+	 */
+	
+	
+	public static void sort(Comparable[] a){
+		StdRandom.shuffle(a); 						// Eliminate dependence on input.
+		sort(a, 0, a.length - 1);
+	}
+	
+	private static boolean less(Comparable v, Comparable w) {
+		return v.compareTo(w) < 0;
+	}
+
+	private static void exch(Comparable[] a, int i, int j) {
+		Comparable t = a[i];
+		a[i] = a[j];
+		a[j] = t;
+	}
+	
+	private static void sort(Comparable[] a, int lo, int hi) {
 		if (hi <= lo)
 			return;
 		int lt = lo, i = lo + 1, gt = hi;
-		Comparable v = a[lo];
-		while (i <= gt) {
-			int cmp = a[i].compareTo(v);
-			if (cmp < 0)
-				exch(a, lt++, i++);
-			else if (cmp > 0)
-				exch(a, i, gt--);
-			else
-				i++;
-		} // Now a[lo..lt-1] < v = a[lt..gt] < a[gt+1..hi].
-		sort(a, lo, lt - 1);
-		sort(a, gt + 1, hi);
+		int j = partition(a, lo, hi);
+		sort(a, lo, j-1); // Sort left part a[lo .. j-1].
+		sort(a, j+1, hi); // Sort right part a[j+1 .. hi].
 	}
 
-	/** Partition into a[lo..i-1], a[i], a[i+1..hi]. */
+	/** QuickSort partition takes random item K and partition
+	 * array in a way that previous-2, previous-1, previous<K<next, next+1, next+2....
+	 * Partition into a[lo..i-1], a[i], a[i+1..hi]. */
 	private static int partition(Comparable[] a, int lo, int hi) {
 
 		int i = lo, j = hi + 1; // left and right scan indices
@@ -39,15 +55,5 @@ public class QuickSort {
 		}
 		exch(a, lo, j); // Put v = a[j] into position
 		return j; // with a[lo..j-1] <= a[j] <= a[j+1..hi].
-	}
-	
-	private static boolean less(Comparable v, Comparable w) {
-		return v.compareTo(w) < 0;
-	}
-
-	private static void exch(Comparable[] a, int i, int j) {
-		Comparable t = a[i];
-		a[i] = a[j];
-		a[j] = t;
 	}
 }

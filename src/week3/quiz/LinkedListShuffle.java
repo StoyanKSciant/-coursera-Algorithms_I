@@ -70,13 +70,13 @@ public class LinkedListShuffle<Item> {
 		}
 
 		// 2) Split the linked list in two halves
-		// node1, head of first half    1 -> 2 -> 3
-		// node2, head of second half   4 -> 5
+		// node1, head of first half    1 -> 2 -> 3 -> 4 -> 5
+		// node2, head of second half	6 -> 7 -> 8 -> 9 -> 10
 		Node node1 = node;
-		Node node2 = slow.next;
+		Node node2 = slow.next;		// found middle
 		slow.next = null;
 
-		// 3) Reverse the second half, i.e., 5 -> 4
+		// 3) Reverse the second half, i.e., 10 -> 9 -> 8 -> 7 -> 6
 		node2 = reverselist(node2);
 
 		// 4) Merge alternate nodes
@@ -105,18 +105,20 @@ public class LinkedListShuffle<Item> {
 		// Assign the head of the new list to head pointer
 		node = node.next;
     }
+	
+	public void populateReculsive(int max, Node head) {
+		if(max > 0) {
+			head.next = new Node(max);
+			int leftIntegers = max - 1;
+			populateReculsive(leftIntegers, head.next);
+		}
+	}
 
     public static void main(String[] args) {
 		
 		LinkedListShuffle listShuffle = new LinkedListShuffle();
 		listShuffle.head = new Node("Head");
-		
-		listShuffle.head.next = new Node(1);
-		listShuffle.head.next.next = new Node(2);
-		listShuffle.head.next.next.next = new Node(3);
-		listShuffle.head.next.next.next.next = new Node(4);
-		listShuffle.head.next.next.next.next.next = new Node(5);
-		
+		listShuffle.populateReculsive(10, head);
 		listShuffle.printLinkedList(head); // print original list
 		listShuffle.rearrange(head); // rearrange list as per ques
 		System.out.println("");

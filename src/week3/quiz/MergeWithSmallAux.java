@@ -13,26 +13,29 @@ import java.util.Arrays;
 
 public class MergeWithSmallAux {
 
+	
+	// because the two sub arrays are sorted, only once we merge, so we directly compare aux[0...N-1] to a[N]
 	public void mergeWithAuxArr(Comparable[] a, Comparable[] aux, int N) {
 
-		// implementaion of mergeSort
+		// populate aux array
 		for (int k = 0; k < N; k++) {
 			aux[k] = a[k];
 		}
-
-		// i - index of aux array
-		// j - index of right part of a
+		
+		// i - index of left pointer aux[] array
+		// j - index of right part of a[a] array
 		// k - index of merged array
+		
 		int i = 0, j = N, k = 0;
 		while (k < a.length) {
-			if (i >= N)
+			if (i >= N)								// If left part is consumed, move to next pointer j
 				a[k++] = a[j++];
-			else if (j >= a.length)
+			else if (j >= a.length)					// If right part is consumed, move to previous pointer i
 				a[k++] = aux[i++];
-			else if (aux[i].compareTo(a[j]) < 0)
+			else if (aux[i].compareTo(a[j]) < 0)	// left side aux is bigger than a, merge from a[k] up
 				a[k++] = aux[i++];
 			else {
-				a[k++] = a[j++];
+				a[k++] = a[j++];					//  right side is bigger, merge from a[N] up
 			}
 		}
 	}
@@ -44,11 +47,13 @@ public class MergeWithSmallAux {
 		Arrays.stream(a).forEach((c) -> System.out.print(c + ","));
 		System.out.println();
 		MergeWithSmallAux m = new MergeWithSmallAux();
+		
+		// custom merge sort
 		int N = a.length / 2;
 		Comparable[] aux = new Comparable[N];
 		m.mergeWithAuxArr(a, aux, N);
+		
 		System.out.println("After merging:");
 		Arrays.stream(a).forEach((c) -> System.out.print(c + ","));
-		System.out.println();
 	}
 }
