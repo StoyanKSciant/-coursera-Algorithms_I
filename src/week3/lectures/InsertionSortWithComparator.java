@@ -1,4 +1,4 @@
-/* 
+/*
  * Use Object instead of Comparable
  * pass Comparator to sort() and less() and use it in less()
  */
@@ -17,13 +17,15 @@ public class InsertionSortWithComparator {
 			}
 		}
 	}
-	
+
 	// this is where comparator is used
 	private static boolean less(Comparator c, Object v, Object w) {
 		return c.compare(v,w) < 0;
 	}
-	
+
 	private static void exch(Object[] a, int i, int j) {
-		Object swap = a[i]; a[i] = a[j]; a[j] = swap;
+		Object swap = a[i];
+		a[i] = a[j];
+		a[j] = swap;
 	}
 }

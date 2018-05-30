@@ -1,23 +1,23 @@
 /****************************************************************************************************
  * Point.java implements the constructor and the draw(), drawTo(), and toString() methods. Your job
  * is to add the following components:
- * 
- * >The compareTo() method should compare points by their y-coordinates, breaking ties by their 
- *  x-coordinates. Formally, the invoking point (x0, y0) is less than the argument point (x1, y1) iff 
+ *
+ * >The compareTo() method should compare points by their y-coordinates, breaking ties by their
+ *  x-coordinates. Formally, the invoking point (x0, y0) is less than the argument point (x1, y1) iff
  *  either y0 < y1 or if y0 = y1 and x0 < x1.
  *
  * >The slopeTo() method should return the slope between the invoking point (x0, y0) and the argument
- *  point (x1, y1), which is given by the formula (y1 − y0) / (x1 − x0). Treat the slope of a 
- *  horizontal line segment as positive zero; treat the slope of a vertical line segment as positive 
- *  infinity; treat the slope of a degenerate line segment (between a point and itself) as negative 
+ *  point (x1, y1), which is given by the formula (y1 − y0) / (x1 − x0). Treat the slope of a
+ *  horizontal line segment as positive zero; treat the slope of a vertical line segment as positive
+ *  infinity; treat the slope of a degenerate line segment (between a point and itself) as negative
  *  infinity.
  *
- * >The slopeOrder() method should return a comparator that compares its two argument points by the 
+ * >The slopeOrder() method should return a comparator that compares its two argument points by the
  *  slopes they make with the invoking point (x0, y0). Formally, the point (x1, y1) is less than the
- *  point (x2, y2) if and only if the slope (y1 − y0) / (x1 − x0) is less than the slope 
- *  (y2 − y0) / (x2 − x0). Treat horizontal, vertical, and degenerate line segments as in the 
+ *  point (x2, y2) if and only if the slope (y1 − y0) / (x1 − x0) is less than the slope
+ *  (y2 − y0) / (x2 − x0). Treat horizontal, vertical, and degenerate line segments as in the
  *  slopeTo() method.
- * 
+ *
  * Do not override the equals() or hashCode() methods.
  ****************************************************************************************************/
 
@@ -62,7 +62,7 @@ public class Point implements Comparable<Point> {
         StdDraw.line(this.x, this.y, that.x, that.y);
     }
 
-    
+
     /**
      * Returns a string representation of this point.
      * This method is provide for debugging;
@@ -74,7 +74,7 @@ public class Point implements Comparable<Point> {
         /* DO NOT MODIFY */
         return "(" + x + ", " + y + ")";
     }
-    
+
     /**
      * Returns the slope between this point and the specified point.
      * Formally, if the two points are (x0, y0) and (x1, y1), then the slope
@@ -86,7 +86,8 @@ public class Point implements Comparable<Point> {
      * @param  that the other point
      * @return the slope between this point and the specified point
      */
-    public double slopeTo(Point that) {		// the slope between this point and that point
+    public double slopeTo(Point that) {
+		return x;		// the slope between this point and that point
         /* YOUR CODE HERE */
     }
 
@@ -102,7 +103,8 @@ public class Point implements Comparable<Point> {
      *         point; and a positive integer if this point is greater than the
      *         argument point
      */
-    public int compareTo(Point that) {		// compare two points by y-coordinates, breaking ties by x-coordinates
+    public int compareTo(Point that) {
+		return x;		// compare two points by y-coordinates, breaking ties by x-coordinates
         /* YOUR CODE HERE */
     }
 
@@ -112,7 +114,8 @@ public class Point implements Comparable<Point> {
      *
      * @return the Comparator that defines this ordering on points
      */
-    public Comparator<Point> slopeOrder() {// compare two points by slopes they make with this point
+    public Comparator<Point> slopeOrder() {
+		return null;// compare two points by slopes they make with this point
         /* YOUR CODE HERE */
     }
 
